@@ -1,0 +1,69 @@
+#%RAML 1.0 DataType
+type: object
+properties:
+  data:
+    type: object
+    properties:
+      createdBy:
+        type: string
+        description: organizer id
+      officeId:
+        type: string
+        description: link to which office handle it
+      jobId:
+        type: string
+        description: link to which job
+      clientCoordinates:
+          type: object
+          properties:
+            lat:
+              type: string
+            lng:
+              type: string
+          description: client coordinates
+      type:
+        required: false
+        type: string
+        description: job type
+      callerName:
+        required: false
+        type: string
+        description: client who request this appointment
+      assignedEngineer:
+        required: false
+        type: string
+        description: assigned engineer id
+      priority:
+        required: false
+        type: string
+        enum: ["normal", "urgent"]
+        description: priority level
+      requirements:
+        required: false
+        type: object
+        description: equipment needed for this appointment
+      serviceDescription:
+        required: false
+        type: string
+        description: detail description
+      status:
+        required: false
+        type: string
+        enum: ["assigned", "unassigned"]
+        description: appointment status
+      assignedAt:
+        required: false
+        type: string
+        description: assign start time
+      assignedEnd:
+        required: false
+        type: string
+        description: assign end time
+      startedAt:
+        required: false
+        type: string
+        description: appointment real start time
+      targetDate:
+        required: false
+        type: string
+        description: expected event finished time

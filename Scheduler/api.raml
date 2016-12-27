@@ -1,0 +1,65 @@
+#%RAML 1.0
+---
+title: FSO Scheduler
+mediaType: application/json
+version: 1
+
+types:
+  Appointment: !include types/appointment.raml
+  Assignment: !include types/assignment.raml
+  Assignments: !include types/assignments.raml
+  RecommendationGet: !include types/recommendation-get.json
+  Recommendation: !include types/recommendation.json
+
+/appointments:
+  post:
+    description: Add a new appointment.
+    body:
+      type: Appointment
+    responses:
+      201:
+        body:
+          example: |
+            {"id":"uuid"}
+      400:
+        body:
+          example: |
+            {"message": "Bad request"}
+  /assignment:
+    post:
+      description: Assign multi-couples of one engineer per appointment.
+      body:
+        type: Assignments
+      responses:
+        200:
+          body:
+            example: |
+              [{id, engineerId}]
+
+  /{id}/assignment:
+    post:
+      description: Assign an appointment to a engineer.
+      body:
+        type: Assignment
+      responses:
+        200:
+          body:
+            application/json:
+              type: Appointment
+        400:
+          body:
+            example: |
+              {"message": "Bad request"}
+    delete:
+      description: Unassign a engineer from an appointment.
+      body:
+
+  /recommendations:
+    post:
+      description: Get recommendations of appointments.
+      body:
+        type: RecommendationGet
+      responses:
+        200:
+          body:
+            type: Recommendation
