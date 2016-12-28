@@ -1,0 +1,9 @@
+{
+  "errors": [
+    {
+      "message": "Message describing the error",
+      "type": "HttpException",
+      "code": 400
+    }
+  ]
+}

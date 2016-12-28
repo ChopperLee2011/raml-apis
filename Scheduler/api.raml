@@ -8,8 +8,8 @@ types:
   Appointment: !include types/appointment.raml
   Assignment: !include types/assignment.raml
   Assignments: !include types/assignments.raml
-  RecommendationGet: !include types/recommendation-get.json
-  Recommendation: !include types/recommendation.json
+  RecommendationGet: !include types/recommendation-get.raml
+  Recommendation: !include types/recommendation.raml
 
 /appointments:
   post:
@@ -19,12 +19,10 @@ types:
     responses:
       201:
         body:
-          example: |
-            {"id":"uuid"}
+          example: !include examples/post-appointment.json
       400:
         body:
-          example: |
-            {"message": "Bad request"}
+          example: !include examples/error.json
   /assignment:
     post:
       description: Assign multi-couples of one engineer per appointment.
@@ -33,8 +31,7 @@ types:
       responses:
         200:
           body:
-            example: |
-              [{id, engineerId}]
+            example: !include examples/assignment.json
 
   /{id}/assignment:
     post:
@@ -44,12 +41,10 @@ types:
       responses:
         200:
           body:
-            application/json:
-              type: Appointment
+            example: !include examples/single-assignment.json
         400:
           body:
-            example: |
-              {"message": "Bad request"}
+            example: !include examples/error.json
     delete:
       description: Unassign a engineer from an appointment.
       body:
