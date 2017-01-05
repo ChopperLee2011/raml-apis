@@ -8,6 +8,7 @@ types:
   Appointment: !include types/appointment.raml
   Assignment: !include types/assignment.raml
   Assignments: !include types/assignments.raml
+  AppointmentIds: !include types/appointmentIds.raml
   RecommendationGet: !include types/recommendation-get.raml
   Recommendation: !include types/recommendation.raml
 
@@ -32,6 +33,14 @@ types:
         200:
           body:
             example: !include examples/assignment.json
+    delete:
+      description: Unassign enginners from several appointments
+      body:
+        type: AppointmentIds
+      responses:
+        204:
+          body:
+
 
   /{id}/assignment:
     post:
